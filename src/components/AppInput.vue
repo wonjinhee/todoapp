@@ -19,8 +19,10 @@ export default {
   },
   methods:{
     addTodo: function(){
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput();
+      if(this.newTodoItem !== ''){
+        this.$emit("addInputItem", this.newTodoItem)
+        this.clearInput();
+      }
     },
     clearInput: function(){
       this.newTodoItem = "";
@@ -32,5 +34,5 @@ export default {
 <style scoped>
   .input_wrap{display:table; width:100%;  }
   .input_wrap .form_control{display:table-cell; width:100%; padding:0 10px;  border:#ccc solid 1px; border-right:none; height:40px;}
-  .btn_add{display:table-cell; background:rgb(44, 171, 255); color:#fff; font-size:24px; width:40px; text-align: center; vertical-align: middle }
+  .btn_add{display:table-cell; background:rgb(44, 171, 255); color:#fff; font-size:24px; width:40px; text-align: center; vertical-align: middle; cursor: pointer; }
 </style>
